@@ -1,13 +1,14 @@
 [tool.poetry]
-name = "cognito"
+name = "flask-aws-cognito"
 version = "0.1.0"
 description = ""
-authors = ["Jonathan Gonzalez <jgonf@safebytelabs.com>"]
+authors = ["Jonathan González <jgonf@safebytelabs.com>"]
+license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
-flask = "^3.0.1"
+python = "^3.12"
+Flask = "^3.0.1"
 boto3 = "^1.34.33"
 environs = "^10.3.0"
 
