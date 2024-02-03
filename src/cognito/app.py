@@ -4,7 +4,6 @@
 import base64
 import hashlib
 import hmac
-# import json
 
 import boto3
 from flask import Flask, jsonify, request
@@ -12,16 +11,13 @@ from botocore.exceptions import ClientError
 
 
 app = Flask(__name__)
-app.config.from_object("src.cognito.config.ProductionConfig")
+app.config.from_object("config")
 app.json.sort_keys = False  # type: ignore
 cognito_client = boto3.client('cognito-idp', region_name=app.config['AWS_REGION'])
 
 
 def get_secret_hash(username):
-    """
-    Generate the secret hash using the username, client ID, and client secret.
-    https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash
-    """
+    """Compute the hash taht AWS Cognito IdO requires for the Authentication Flow selected"""
     message = username + app.config['COGNITO_CLIENT_ID']
     key = bytes(app.config['COGNITO_CLIENT_SECRET'], 'latin-1')
     msg = bytes(message, 'latin-1')
@@ -49,8 +45,6 @@ def login():
                 'SECRET_HASH': secret_hash
             }
         )
-
-        # print(json.dumps(auth_response))
 
         # If authentication is successful, return the tokens
         if auth_response and 'AuthenticationResult' in auth_response:
