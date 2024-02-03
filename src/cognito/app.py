@@ -17,7 +17,7 @@ cognito_client = boto3.client('cognito-idp', region_name=app.config['AWS_REGION'
 
 
 def get_secret_hash(username):
-    """Compute the hash taht AWS Cognito IdO requires for the Authentication Flow selected"""
+    """Compute the hash that AWS Cognito IdP requires for the authentication flow selected"""
     message = username + app.config['COGNITO_CLIENT_ID']
     key = bytes(app.config['COGNITO_CLIENT_SECRET'], 'latin-1')
     msg = bytes(message, 'latin-1')
@@ -28,7 +28,7 @@ def get_secret_hash(username):
 @app.route('/login', methods=['POST'])
 def login():
     """
-    Login endpoint
+    Login endpoint to symulate cognito in action
     """
     username = request.json.get("username")
     password = request.json.get("password")
