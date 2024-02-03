@@ -17,7 +17,8 @@ name: Simple repo tesing
 
 jobs:
   pylint:
-    runs-on: self-hosted
+    # runs-on: self-hosted
+    runs-on: ubuntu-latest
     name: "pylint"
 
     steps:
