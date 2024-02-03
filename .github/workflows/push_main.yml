@@ -45,5 +45,4 @@ jobs:
       uses: davidslusser/actions_python_pylint@v1.0.0
       with:
         src: "src"
-        options: "--cov=src"
         python_version: "3.12.1"
