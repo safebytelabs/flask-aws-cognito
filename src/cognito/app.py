@@ -1,6 +1,8 @@
 # # -*- coding: utf-8 -*-
 """Flask authentication with AWS Cognito IdP in USER_PASSWORD_AUTH authentication model"""
 
+# pylint: disable=C0301
+
 import base64
 import hashlib
 import hmac
@@ -48,7 +50,7 @@ def login():
 
         # If authentication is successful, return the tokens
         if auth_response and 'AuthenticationResult' in auth_response:
-            return jsonify({
+            op_response = jsonify({
                 'message': 'Authentication successful',
                 'id_token': auth_response['AuthenticationResult']['IdToken'],  # We want this token...
                 'access_token': auth_response['AuthenticationResult']['AccessToken'],  # ...but we don't want this other
@@ -56,7 +58,8 @@ def login():
             }), 200
         else:
             # If authentication fails something happened with credentials and/or the username hash
-            return jsonify({'message': 'Authentication failed'}), 401
+            op_response = jsonify({'message': 'Authentication failed'}), 401
+        return op_response
     except ClientError as e:
         # This means AWS is responding with an error because we didn't provide the right credentials
         return jsonify({'message': e.response['Error']['Message']}), 400
