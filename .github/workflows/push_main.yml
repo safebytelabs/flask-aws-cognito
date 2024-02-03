@@ -1,0 +1,49 @@
+# This file contains the following steps:
+#
+#
+#
+#
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+name: Simple repo tesing
+
+jobs:
+  pylint:
+    runs-on: [self-hosted, "m92p"]
+    name: "pylint"
+
+    steps:
+    - uses: actions/checkout@v3 # Check out the repository code
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+
+    - name: Configure Poetry
+      run: |
+        poetry config virtualenvs.create false
+
+    - name: Install dependencies with Poetry
+      run: |
+        poetry install --no-root  # Assuming you want to install dependencies only
+
+    - name: Run Pylint
+      uses: davidslusser/actions_python_pylint@v1.0.0
+      with:
+        src: "src"
+        options: "--cov=src"
+        poetry_install_command: "poetry install --no-root" # Modified to use Poetry
+        python_version: "3.12"
