@@ -39,7 +39,11 @@ jobs:
         /home/docker/.local/bin/poetry install --no-root -vvv
 
     - name: Run Pylint
-      uses: davidslusser/actions_python_pylint@v1.0.0
-      with:
-        src: "src"
-        python_version: "3.12.1"
+      run: |
+        pylint src/
+
+#    - name: Run Pylint
+#      uses: davidslusser/actions_python_pylint@v1.0.0
+#      with:
+#        src: "src"
+#        python_version: "3.12.1"
