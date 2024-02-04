@@ -19,7 +19,7 @@ jobs:
 
   Linting:
     runs-on: ["self-hosted", "m92p"]
-    name: "pylint"
+    name: Linting
     steps:
     
     - name: Checkout code
