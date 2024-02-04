@@ -41,14 +41,9 @@ jobs:
         export PATH=/home/docker/.local/bin/:$PATH
 
 
-    - name: Configure Poetry
-      run: |
-        poetry config virtualenvs.create false
-
-
     - name: Install dependencies with Poetry
       run: |
-        poetry install --no-root  # Assuming you want to install dependencies only
+        poetry install --no-root -vvv
 
 
     - name: Run Pylint
