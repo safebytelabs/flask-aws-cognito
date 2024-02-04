@@ -18,7 +18,8 @@ name: Simple repo tesing
 jobs:
 
   Linting:
-    runs-on: ["self-hosted", "m92p"]
+    # runs-on: ["self-hosted", "m92p"]
+    runs-on: ubuntu-latest
     name: Linting
     steps:
     
@@ -33,13 +34,11 @@ jobs:
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
-        export PATH=/home/docker/.local/bin:$PATH
         poetry --version
         poetry update
 
     - name: Install dependencies with Poetry
       run: |
-        export PATH=/home/docker/.local/bin:$PATH
         poetry install --no-interaction
 
     - name: Run Pylint
