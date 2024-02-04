@@ -35,10 +35,11 @@ jobs:
         curl -sSL https://install.python-poetry.org | python3 -
         export PATH=/home/docker/.local/bin:$PATH
         poetry --version
+        poetry update
 
     - name: Install dependencies with Poetry
       run: |
-        poetry install --no-root -vvv
+        poetry install --no-interaction
 
     - name: Run Pylint
       run: |
