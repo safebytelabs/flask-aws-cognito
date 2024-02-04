@@ -1,5 +1,5 @@
 #
-# v1.0
+# Pipeline v1.0
 #
 
 on:
@@ -37,14 +37,9 @@ jobs:
       run: |
         poetry export --output requirements.txt
 
-#    - name: Install dependencies with Poetry
-#      run: |
-#        poetry install  --no-root --no-interaction
-
     - uses: insightsengineering/pip-action@v2
       with:
         requirements: requirements.txt
-
 
     - name: Run Pylint
       uses: davidslusser/actions_python_pylint@v1.0.0
