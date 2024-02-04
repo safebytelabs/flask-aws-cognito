@@ -21,28 +21,28 @@ jobs:
     name: "pylint"
 
     steps:
-    - uses: actions/checkout@v3 # Check out the repository code
+    - name: Checkout code
+      uses: actions/checkout@v4
+
 
     - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.12.1'
+      uses: actions/setup-python@v5
+
 
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
 
-    - name: Prepare shell for Poetry
-      run: |
-        export PATH="/home/docker/.local/bin:$PATH"
 
     - name: Configure Poetry
       run: |
         poetry config virtualenvs.create false
 
+
     - name: Install dependencies with Poetry
       run: |
         poetry install --no-root  # Assuming you want to install dependencies only
+
 
     - name: Run Pylint
       uses: davidslusser/actions_python_pylint@v1.0.0
