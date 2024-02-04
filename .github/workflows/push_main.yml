@@ -1,5 +1,8 @@
 #
-# Pipeline v1.0
+# Pipeline v1.0 (2024-02-05)
+#
+# Poetry export to Pip
+# poetry export --without-hashes --without dev -f requirements.txt -o requirements.txt
 #
 
 on:
@@ -17,30 +20,25 @@ jobs:
 
   Stage1:
     runs-on: ["self-hosted", "m92p"]
-    # runs-on: ubuntu-latest
     name: Linting
     steps:
 
+    # This step checkout code into local container
     - name: Checkout code
       uses: actions/checkout@v4
 
+    # This step configures python into the path
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.12.1' 
+        python-version: '3.12.1'
 
-#    - name: Install Poetry
-#      run: |
-#        curl -sSL https://install.python-poetry.org | python3 -
-#
-#    - name: Export poetry.lock to requirements.txt
-#      run: |
-#        poetry export --output requirements.txt
-
+    # This step install project dependencies from pip requirements file
     - uses: insightsengineering/pip-action@v2
       with:
         requirements: requirements.txt
 
+    # This step perform a pylint exec over code
     - name: Run Pylint
       uses: davidslusser/actions_python_pylint@v1.0.0
       with:
