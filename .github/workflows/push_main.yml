@@ -32,6 +32,10 @@ jobs:
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
 
+    - name: Prepare shell for Poetry
+      run: |
+        export PATH="/home/docker/.local/bin:$PATH"
+
     - name: Configure Poetry
       run: |
         poetry config virtualenvs.create false
