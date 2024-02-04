@@ -41,10 +41,9 @@ jobs:
 #      run: |
 #        poetry install  --no-root --no-interaction
 
-    - uses: parafoxia/pip-install@v1
+    - uses: insightsengineering/pip-action@v2
       with:
-        requirements: |
-          requirements.txt
+        requirements: requirements.txt
 
     - name: Run Pylint
       uses: davidslusser/actions_python_pylint@v1.0.0
