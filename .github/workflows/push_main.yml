@@ -16,8 +16,8 @@ name: Simple repo testing
 jobs:
 
   Stage1:
-    # runs-on: ["self-hosted", "m92p"]
-    runs-on: ubuntu-latest
+    runs-on: ["self-hosted", "m92p"]
+    # runs-on: ubuntu-latest
     name: Linting
     steps:
 
