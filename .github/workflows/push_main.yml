@@ -45,6 +45,7 @@ jobs:
       with:
         requirements: requirements.txt
 
+
     - name: Run Pylint
       uses: davidslusser/actions_python_pylint@v1.0.0
       with:
