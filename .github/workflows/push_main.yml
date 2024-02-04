@@ -16,36 +16,31 @@ on:
 name: Simple repo tesing
 
 jobs:
-  pylint:
+
+  Linting:
     runs-on: ["self-hosted", "m92p"]
     name: "pylint"
-
     steps:
+    
     - name: Checkout code
       uses: actions/checkout@v4
-
 
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.12.1' 
 
-
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
-        type poetry
-
 
     - name: Prepare shell for Poetry
       run: |
         export PATH=/home/docker/.local/bin/:$PATH
 
-
     - name: Install dependencies with Poetry
       run: |
         poetry install --no-root -vvv
-
 
     - name: Run Pylint
       uses: davidslusser/actions_python_pylint@v1.0.0
