@@ -33,6 +33,7 @@ jobs:
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
+        export PATH=/home/docker/.local/bin:$PATH
         poetry --version
         poetry update
 
