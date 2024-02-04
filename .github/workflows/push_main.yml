@@ -38,7 +38,7 @@ jobs:
 
     - name: Prepare shell for Poetry
       run: |
-        export PATH="/home/docker/.local/bin:$PATH"
+        export PATH=/home/docker/.local/bin/:$PATH
 
 
     - name: Configure Poetry
