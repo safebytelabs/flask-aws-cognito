@@ -39,7 +39,7 @@ jobs:
 
     - name: Install dependencies with Poetry
       run: |
-        poetry install --no-interaction
+        poetry install  --no-root --no-interaction
 
     - name: Run Pylint
       run: |
