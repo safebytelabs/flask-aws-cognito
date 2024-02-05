@@ -6,6 +6,7 @@
 import base64
 import hashlib
 import hmac
+import jwt  # pyJWT
 
 import boto3
 from flask import Flask, jsonify, request
@@ -25,6 +26,12 @@ def get_secret_hash(username):
     msg = bytes(message, 'latin-1')
     dig = hmac.new(key, msg, digestmod=hashlib.sha256).digest()
     return base64.b64encode(dig).decode()
+
+
+def decode_jwt(token):
+    # Decode JWT: We skip verification by setting verify=False.
+    decoded = jwt.decode(token, options={"verify_signature": False})
+    return decoded
 
 
 @app.route('/login', methods=['POST'])
@@ -47,6 +54,10 @@ def login():
                 'SECRET_HASH': secret_hash
             }
         )
+
+        x = decode_jwt(auth_response['AuthenticationResult']['IdToken'])
+        print(type(x))
+        print(x)
 
         # If authentication is successful, return the tokens
         if auth_response and 'AuthenticationResult' in auth_response:
