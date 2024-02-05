@@ -29,7 +29,8 @@ def get_secret_hash(username):
 
 
 def decode_jwt(token):
-    # Decode JWT: We skip verification by setting verify=False.
+    """Decode JWT token"""
+    # We skip verification by setting verify=False.
     decoded = jwt.decode(token, options={"verify_signature": False})
     return decoded
 
