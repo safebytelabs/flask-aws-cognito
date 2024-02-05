@@ -1,3 +1,5 @@
+[![Simple repo testing](https://github.com/safebytelabs/flask-aws-cognito/actions/workflows/push_main.yml/badge.svg?branch=main)](https://github.com/safebytelabs/flask-aws-cognito/actions/workflows/push_main.yml)
+
 # flask-aws-cognito
 **Boto3 and Flask code to authenticate users with AWS Cognito user pool**
 
